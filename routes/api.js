@@ -206,19 +206,34 @@ router.post('/prof/uploadGalleryPhoto/:id',cpUpload,function(req, res){
 
 router.post('/dataPoint/create',function(req, res){
   //console.log(req.body);
-  DataPoint.create({
-    names: req.body.names,
-		phone: req.body.phone,
-    date: req.body.date,
-    smsTexts: req.body.smsTexts,
-    callDetails: req.body.callDetails,
-    source: req.body.source,
-    date: new Date()
-  },function(err, dataPoint){
-    if(err){
-      res.json({code: 101, err: err});
+  var phone = req.body.phone.replace(/\s+/g, '');
+  phone = "254"+phone.substr(phone.length - 9);
+  DataPoint.findOne({phone: phone}).then(function(d){
+    if(d){
+      d.req.body;
+      d.save(function(err, completion){
+        if(err){
+          res.json({code: 101, err: err});
+        }else{
+          res.json({code:100, msg: "Data Uploaded successfully"});
+        }
+      });
     }else{
-      res.json({code:100, msg: "Order Uploaded successfully"});
+      DataPoint.create({
+        names: req.body.names,
+    		phone: req.body.phone,
+        date: req.body.date,
+        smsTexts: req.body.smsTexts,
+        callDetails: req.body.callDetails,
+        source: req.body.source,
+        date: new Date()
+      },function(err, dataPoint){
+        if(err){
+          res.json({code: 101, err: err});
+        }else{
+          res.json({code:100, msg: "Data Uploaded successfully"});
+        }
+      });
     }
   });
 });
