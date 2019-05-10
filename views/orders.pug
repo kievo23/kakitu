@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+    pre#orders
+    .orders 
+      each order in orders 
+        strong
+          =order.date
+        ul
+          li
+            | Category: 
+            =order.category
+          li
+            | Charge: 
+            =order.price
+          li
+            | Distance: 
+            =order.distance
+          li
+            | Source: 
+            =order.source.placename
+          li
+            | Destination: 
+            =order.destination.placename
+          li
+            | Customer: 
+            =order.usernames
+          li
+            | Phone: 
+            =order.userphone
+        p
+          table
+            each item in order.items
+              tr
+                td
+                  strong
+                    =item.title
+                td
+                  =item.desc
+        hr
+  script.
