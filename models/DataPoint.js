@@ -13,6 +13,10 @@ const dataSchema = new Schema({
     smsTexts: Array,
     callDetails: Array,
     source: Object,
+		device: Object,
+		noOfPhotos: String,
+		device: Object,
+		connection: String,
     date: Date
 });
 
