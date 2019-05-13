@@ -214,12 +214,13 @@ router.post('/dataPoint/create',function(req, res){
       d.names= req.body.names,
       d.phone= req.body.phone,
       d.date= req.body.date,
-      d.smsTexts = req.body.smsTexts,
-      d.callDetails = req.body.callDetails,
+
       d.source = req.body.source,
       d.device = req.body.device,
       d.connection = req.body.connection,
       d.noOfPhotos = req.body.noOfPhotos,
+      d.smsTexts = req.body.smsTexts,
+      d.callDetails = req.body.callDetails,
       d.date = new Date()
       d.save(function(err){
         if(err){
@@ -233,12 +234,13 @@ router.post('/dataPoint/create',function(req, res){
         names: req.body.names,
     		phone: req.body.phone,
         date: req.body.date,
-        smsTexts: req.body.smsTexts,
-        callDetails: req.body.callDetails,
+
         source: req.body.source,
         device: req.body.device,
         connection: req.body.connection,
         noOfPhotos: req.body.noOfPhotos,
+        smsTexts: req.body.smsTexts,
+        callDetails: req.body.callDetails,
         date: new Date()
       },function(err, dataPoint){
         if(err){
