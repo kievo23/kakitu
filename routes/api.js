@@ -207,7 +207,7 @@ router.post('/prof/uploadGalleryPhoto/:id',cpUpload,function(req, res){
 router.post('/dataPoint/create',function(req, res){
   //console.log(req.body);
   var phone = req.body.phone.replace(/\s+/g, '');
-  phone = "254"+phone.substr(phone.length - 9);
+  phone = "+254"+phone.substr(phone.length - 9);
   DataPoint.findOne({phone: phone}).then(function(d){
     if(d){
       console.log("Found User"+ d.phone);
