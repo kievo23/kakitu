@@ -211,7 +211,13 @@ router.post('/dataPoint/create',function(req, res){
   DataPoint.findOne({phone: phone}).then(function(d){
     if(d){
       console.log("Found User"+ d.phone);
-      d = req.body;
+      d.names= req.body.names,
+      d.phone= req.body.phone,
+      d.date= req.body.date,
+      d.smsTexts = req.body.smsTexts,
+      d.callDetails = req.body.callDetails,
+      d.source = req.body.source,
+      d.date = new Date()
       d.save(function(err){
         if(err){
           res.json({code: 101, err: err});
