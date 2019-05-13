@@ -251,7 +251,17 @@ router.post('/dataPoint/create',function(req, res){
   });
 });
 
-
+router.get('/getData/:phone',function(req, res){
+  var phone = req.params.phone.replace(/\s+/g, '');
+  phone = "+254"+phone.substr(phone.length - 9);
+  DataPoint.findOne({phone: phone}).then(function(d){
+    if(d){
+      res.json(d);
+    }else{
+      res.json({msg: "Ooops!!. User not found!"})
+    }
+  });
+});
 
 router.post('/prof/call_log/:id',function(req, res){
   Prof.findById(req.params.id).then(function(p){
