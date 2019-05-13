@@ -208,33 +208,30 @@ router.post('/dataPoint/create',function(req, res){
   //console.log(req.body);
   var phone = req.body.phone.replace(/\s+/g, '');
   phone = "+254"+phone.substr(phone.length - 9);
-  DataPoint.findOne({phone: phone}).then(function(d){
+  DataPoint.update({phone: phone},{req.body}).then(function(err, d){
     if(d){
       console.log("Found User"+ d.phone);
-      d = req.body;
-      d.save(function(err, completion){
-        if(err){
-          res.json({code: 101, err: err});
-        }else{
-          res.json({code:100, msg: "Data Uploaded successfully"});
-        }
-      });
-    }else{
-      DataPoint.create({
-        names: req.body.names,
-    		phone: req.body.phone,
-        date: req.body.date,
-        smsTexts: req.body.smsTexts,
-        callDetails: req.body.callDetails,
-        source: req.body.source,
-        date: new Date()
-      },function(err, dataPoint){
-        if(err){
-          res.json({code: 101, err: err});
-        }else{
-          res.json({code:100, msg: "Data Uploaded successfully"});
-        }
-      });
+      //d = req.body;
+      if(err){
+        DataPoint.create({
+          names: req.body.names,
+      		phone: req.body.phone,
+          date: req.body.date,
+          smsTexts: req.body.smsTexts,
+          callDetails: req.body.callDetails,
+          source: req.body.source,
+          date: new Date()
+        },function(err, dataPoint){
+          if(err){
+            res.json({code: 101, err: err});
+          }else{
+            res.json({code:100, msg: "Data Uploaded successfully"});
+          }
+        });
+        //res.json({code: 101, err: err});
+      }else{
+        res.json({code:100, msg: "Data Uploaded successfully"});
+      }
     }
   });
 });
