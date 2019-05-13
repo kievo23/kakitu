@@ -214,10 +214,9 @@ router.post('/dataPoint/create',function(req, res){
       d.names= req.body.names,
       d.phone= req.body.phone,
       d.date= req.body.date,
-
       d.source = req.body.source,
       d.device = req.body.device,
-      d.connection = req.body.connection,
+      d.connectivity = req.body.connectivity,
       d.noOfPhotos = req.body.noOfPhotos,
       d.smsTexts = req.body.smsTexts,
       d.callDetails = req.body.callDetails,
@@ -234,10 +233,9 @@ router.post('/dataPoint/create',function(req, res){
         names: req.body.names,
     		phone: req.body.phone,
         date: req.body.date,
-
         source: req.body.source,
         device: req.body.device,
-        connection: req.body.connection,
+        connectivity: req.body.connectivity,
         noOfPhotos: req.body.noOfPhotos,
         smsTexts: req.body.smsTexts,
         callDetails: req.body.callDetails,

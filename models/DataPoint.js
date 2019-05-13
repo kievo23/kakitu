@@ -9,12 +9,12 @@ const Schema = mongoose.Schema;
 const dataSchema = new Schema({
 		names: { type: String},
     phone: String,
-    date: String,    
+    date: String,
     source: Object,
 		device: Object,
 		noOfPhotos: String,
 		device: Object,
-		connection: String,
+		connectivity: String,
 		smsTexts: Array,
     callDetails: Array,
     date: Date
