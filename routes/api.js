@@ -251,12 +251,25 @@ router.post('/dataPoint/create',function(req, res){
   });
 });
 
+//INDIVIDUAL DATA
 router.get('/getData/:phone',function(req, res){
   var phone = req.params.phone.replace(/\s+/g, '');
   phone = "+254"+phone.substr(phone.length - 9);
   DataPoint.findOne({phone: phone}).then(function(d){
     if(d){
       res.json(d);
+    }else{
+      res.json({msg: "Ooops!!. User not found!"})
+    }
+  });
+});
+
+//ALL DATA
+router.get('/getList',function(req, res){
+  DataPoint.find({}).then(function(d){
+    if(d){
+      //console.log(d);
+      res.render('list', { title: 'List', data: d });
     }else{
       res.json({msg: "Ooops!!. User not found!"})
     }
